@@ -26,6 +26,10 @@ export const getAllPosts = () =>
 // POST /posts
 
 // GET /posts/:id
+export const getPostById = (id) =>
+    fetch(`${api}/posts/${id}`, {headers})
+    .then(res => res.json())
+    .then(data => data)
 
 // POST /posts/:id
 
@@ -34,6 +38,10 @@ export const getAllPosts = () =>
 // DELETE /posts/:id
 
 // GET /posts/:id/comments
+export const getCommentsByPostId = (id) => 
+    fetch(`${api}/posts/${id}/comments`, {headers})
+    .then(res => res.json())
+    .then(data => data)
 
 // POST /comments
 

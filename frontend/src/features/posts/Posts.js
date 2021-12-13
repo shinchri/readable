@@ -16,7 +16,7 @@ export const Posts = ({posts}) => {
                     </div>
                     <p className="post-content">{post.body}</p>
                     <p>Vote Score: {post.voteScore}</p>
-                    <Link to="" className="button muted-button">
+                    <Link to={`/posts/${post.id}`} className="button muted-button">
                         View Post
                     </Link>
                 </article>

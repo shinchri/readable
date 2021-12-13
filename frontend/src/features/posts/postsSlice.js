@@ -21,6 +21,14 @@ export const fetchPostsByCategory = createAsyncThunk(
     }
 )
 
+export const fetchPostById = createAsyncThunk(
+    'post/fetchPostById',
+    async(id) => {
+        const response = await ReadableAPI.getPostById(id)
+        return response
+    }
+)
+
 const postsSlice = createSlice({
     name: 'posts',
     initialState: [],
@@ -34,6 +42,9 @@ const postsSlice = createSlice({
             })
             .addCase(fetchPostsByCategory.fulfilled, (state, action) => {
                 return action.payload
+            })
+            .addCase(fetchPostById.fulfilled, (state, action) => {
+                return [action.payload]
             })
     }
 })

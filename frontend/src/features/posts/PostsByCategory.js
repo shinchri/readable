@@ -9,12 +9,13 @@ import {
 export const PostsByCategory = (props) => {
     const dispatch = useDispatch()
     const category = props.match.params.category
-    const posts = useSelector(state => state.posts.filter(post => post.category === category))
     
     useEffect(() => {
         dispatch(fetchPostsByCategory(category))
     }, [dispatch, category])
-    
+
+    const posts = useSelector(state => state.posts.filter(post => post.category === category))
+
     return (
         <div>
             <CategoryList />
