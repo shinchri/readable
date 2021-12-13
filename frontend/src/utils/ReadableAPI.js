@@ -12,6 +12,10 @@ export const getAllCategories = () =>
     .then(data => data.categories)
 
 // GET /:category/posts
+export const getPostsByCategory = (category) => 
+    fetch(`${api}/${category}/posts`, {headers})
+    .then(res => res.json())
+    .then(data => data)
 
 // GET /posts
 export const getAllPosts = () =>
@@ -39,4 +43,4 @@ export const getAllPosts = () =>
 
 // PUT /comments/:id
 
-// DELETE /ccomments/:id
+// DELETE /comments/:id
