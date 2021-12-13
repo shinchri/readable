@@ -10,7 +10,6 @@ export const fetchCommentsByPost = createAsyncThunk(
     'comments/fetchCommentsByPost',
     async(postId) => {
         const response = await ReadableAPI.getCommentsByPostId(postId)
-        // console.log(response)
         return response
     }
 )

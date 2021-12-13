@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { formatDate } from '../../utils/helper'
@@ -9,17 +9,8 @@ import {
     fetchPostById
 } from './postsSlice'
 
-export const PostDetail = (props) => {
-    const postId = props.match.params.id
-    const dispatch = useDispatch()
-
-    const post = useSelector(state => state.posts.find(post => post.id === postId))
-
-    useEffect(() => {
-        dispatch(fetchPostById(postId))
-    }, [dispatch, postId])
-
-    return (
+let PostExcerpt = ({post}) => {
+    return(
         <div>
             <CategoryList />
             <section>   
@@ -36,6 +27,21 @@ export const PostDetail = (props) => {
             </section>
             
         </div>
-        
+    )
+}
+export const PostDetail = (props) => {
+    const postId = props.match.params.id
+    const dispatch = useDispatch()
+
+    
+    
+    useEffect(() => {
+        dispatch(fetchPostById(postId))
+    }, [dispatch, postId])
+
+    const post = useSelector(state => state.posts.find(post => post.id === postId))
+
+    return (
+        <PostExcerpt post={post}/>
     )
 }
