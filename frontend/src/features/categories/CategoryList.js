@@ -21,6 +21,7 @@ export const CategoryList = () => {
                             </Link>
                         ))}
                     </div>
+                    <Link to="/posts/new" className="button">Create Post</Link>
                 </div>
             </section>
         </nav>

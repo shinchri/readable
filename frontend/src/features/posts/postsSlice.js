@@ -1,6 +1,7 @@
 import {
     createSlice,
     createAsyncThunk,
+    nanoid,
 } from '@reduxjs/toolkit'
 
 import * as ReadableAPI from '../../utils/ReadableAPI'
@@ -29,6 +30,16 @@ export const fetchPostById = createAsyncThunk(
     }
 )
 
+export const addNewPost = createAsyncThunk(
+    'posts/addNewPost',
+    async (title, body, author, category) => {
+        const id = nanoid()
+        const timestamp = Date.now()
+        const response = await ReadableAPI.addNewPost(id, timestamp, title, body, author, category)
+        return response
+    }
+)
+
 const postsSlice = createSlice({
     name: 'posts',
     initialState: [],
@@ -45,6 +56,9 @@ const postsSlice = createSlice({
             })
             .addCase(fetchPostById.fulfilled, (state, action) => {
                 return [action.payload]
+            })
+            .addCase(addNewPost.fulfilled, (state, action) => {
+                state.posts.push(action.payload)
             })
     }
 })

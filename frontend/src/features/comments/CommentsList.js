@@ -22,6 +22,7 @@ export const CommentsList = ({postId}) => {
                 <section key={comment.id} className="post-excerpt">
                     <h4>By {comment.author}</h4>
                     <span title="{comment.timestamp}"><i>{formatDate(comment.timestamp)}</i></span>
+                    <p>{comment.body}</p>
                 </section>
             ))}
         </div>

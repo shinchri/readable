@@ -9,12 +9,12 @@ import {
 
 export const PostsList = () => {
     const dispatch = useDispatch()
-    const posts = useSelector(state => state.posts)
-    
     
     useEffect(() => {
         dispatch(fetchPosts())
     }, [dispatch])
+
+    const posts = useSelector(state => state.posts)
 
     return (
         <Posts posts={posts}/>

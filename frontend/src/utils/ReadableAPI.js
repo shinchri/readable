@@ -24,6 +24,17 @@ export const getAllPosts = () =>
     .then(data => data)
 
 // POST /posts
+export const addNewPost = (id, timestamp, title, body, author, category) => 
+    fetch(`${api}/posts`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({id, timestamp, title, body, author, category})
+    })
+    .then(res => res.json())
+    .then(data => data)
 
 // GET /posts/:id
 export const getPostById = (id) =>

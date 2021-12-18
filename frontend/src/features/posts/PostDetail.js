@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { formatDate } from '../../utils/helper'
@@ -32,8 +32,6 @@ let PostExcerpt = ({post}) => {
 export const PostDetail = (props) => {
     const postId = props.match.params.id
     const dispatch = useDispatch()
-
-    
     
     useEffect(() => {
         dispatch(fetchPostById(postId))
@@ -41,7 +39,13 @@ export const PostDetail = (props) => {
 
     const post = useSelector(state => state.posts.find(post => post.id === postId))
 
-    return (
-        <PostExcerpt post={post}/>
-    )
+    if (post) {
+        return (
+            <PostExcerpt post={post}/>
+        )
+    }
+
+    // for some reason, the dispatch doesn't happen when the component is mounted
+    // thus check is 'post' exists
+    return null
 }
