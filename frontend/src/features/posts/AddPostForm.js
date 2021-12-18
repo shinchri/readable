@@ -1,6 +1,7 @@
 import { nanoid } from '@reduxjs/toolkit'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Redirect } from 'react-router'
 
 import { CategoryList } from '../categories/CategoryList'
 import { addNewPost } from './postsSlice'
@@ -15,6 +16,7 @@ export const AddPostForm = () => {
     const [ author, setAuthor ] = useState('')
     const [ category, setCategory ] = useState('')
     const [ addRequestStatus, setAddRequestStatus ] = useState('idle')
+    const [ formSubmitted, setFormSubmitted ] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -48,8 +50,13 @@ export const AddPostForm = () => {
                 console.log("Failed to save the post: ", err)
             } finally {
                 setAddRequestStatus('idle')
+                setFormSubmitted(true)
             }
         }
+    }
+
+    if (formSubmitted) {
+        return <Redirect to="/" />
     }
 
     const categoriesOptions = categories.map(category => (
