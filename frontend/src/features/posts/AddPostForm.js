@@ -1,3 +1,4 @@
+import { nanoid } from '@reduxjs/toolkit'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -28,9 +29,17 @@ export const AddPostForm = () => {
 
     const onSavePostClicked = async () => {
         if (canSave) {
+            const newPost = {
+                id: nanoid(),
+                timestamp: Date.now(),
+                title: title,
+                body: body,
+                author: author,
+                category: category
+            }
             try {
                 setAddRequestStatus('pending')
-                await dispatch(addNewPost(title, body, author, category)).unwrap()
+                await dispatch(addNewPost(newPost)).unwrap()
                 setTitle('')
                 setBody('')
                 setAuthor('')
