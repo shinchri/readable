@@ -45,6 +45,17 @@ export const getPostById = (id) =>
 // POST /posts/:id
 
 // PUT /posts/:id
+export const editPost = (post) =>
+    fetch(`${api}/posts/${post.id}`, {
+        method: 'PUT',
+        headers: {
+            ...headers,
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(post)
+    })
+    .then(res => res.json())
+    .then(data => data)
 
 // DELETE /posts/:id
 

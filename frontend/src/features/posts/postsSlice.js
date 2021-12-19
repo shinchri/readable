@@ -37,6 +37,14 @@ export const addNewPost = createAsyncThunk(
     }
 )
 
+export const editPost = createAsyncThunk(
+    'posts/editPost',
+    async (post) => {
+        const response = await ReadableAPI.editPost(post)
+        return response
+    }
+)
+
 const postsSlice = createSlice({
     name: 'posts',
     initialState: [],
@@ -55,6 +63,10 @@ const postsSlice = createSlice({
                 return [action.payload]
             })
             .addCase(addNewPost.fulfilled, (state, action) => {
+                return [action.payload]
+            })
+            .addCase(editPost.fulfilled, (state, action) => {
+                console.log("here: ", action.payload)
                 return [action.payload]
             })
     }
