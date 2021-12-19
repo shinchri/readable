@@ -259,6 +259,22 @@ section.delete-post {
   text-align: center;
 }
 
+.thumbs:hover {
+  cursor: pointer;
+}
+
+.thumbs, .votescore {
+  margin-right: 5px;
+}
+
+.score-div {
+  margin-bottom: 10px;
+}
+
+.edit-delete {
+  margin-bottom: 10px;
+}
+
 @-webkit-keyframes load3 {
   0% {
     -webkit-transform: rotate(0deg);

@@ -43,6 +43,14 @@ export const getPostById = (id) =>
     .then(data => data)
 
 // POST /posts/:id
+export const vote = (id, option) =>
+    fetch(`${api}/posts/${id}`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(option)
+    })
+    .then(res => res.json())
+    .then(data => data)
 
 // PUT /posts/:id
 export const editPost = (post) =>
