@@ -6,8 +6,6 @@ import { Redirect } from 'react-router'
 import { CategoryList } from '../categories/CategoryList'
 import { addNewPost } from './postsSlice'
 
-// What I need:
-// title, body, author, category
 
 export const AddPostForm = () => {
 

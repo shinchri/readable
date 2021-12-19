@@ -14,6 +14,14 @@ export const fetchCommentsByPost = createAsyncThunk(
     }
 )
 
+export const addNewComment = createAsyncThunk(
+    'comments/addNewComment',
+    async(newComment) => {
+        const response = await ReadableAPI.addNewComment(newComment)
+        return response
+    }
+)
+
 const commentsSlice = createSlice({
     name: 'comments',
     initialState: [],
@@ -23,6 +31,9 @@ const commentsSlice = createSlice({
     extraReducers(builder) {
         builder.addCase(fetchCommentsByPost.fulfilled, (state, action) => {
             return [...action.payload]
+        })
+        .addCase(addNewComment.fulfilled, (state ,action) => {
+            state.push(action.payload)
         })
     }
 })

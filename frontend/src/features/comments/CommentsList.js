@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { formatDate } from '../../utils/helper'
+import { AddCommentForm } from './AddCommentForm'
 
 import {
     fetchCommentsByPost
@@ -18,6 +19,7 @@ export const CommentsList = ({postId}) => {
     return (
         <div className="posts-list">
             <h3>Comments List</h3>
+            <AddCommentForm postId={postId} /> <br />
             {comments.map(comment => (
                 <section key={comment.id} className="post-excerpt">
                     <h4>By {comment.author}</h4>
