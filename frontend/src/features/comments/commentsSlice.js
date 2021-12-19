@@ -59,6 +59,7 @@ const commentsSlice = createSlice({
         })
         .addCase(addNewComment.fulfilled, (state ,action) => {
             state.push(action.payload)
+            state.sort((a,b) => b.timestamp - a.timestamp)
         })
         .addCase(deleteComment.fulfilled, (state, action) => {
             const { id } = action.payload
@@ -71,7 +72,6 @@ const commentsSlice = createSlice({
             comment.voteScore = voteScore
         })
         .addCase(editComment.fulfilled, (state, action) => {
-            console.log(action)
             return [action.payload]
         })
     }

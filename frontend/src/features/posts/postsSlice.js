@@ -3,6 +3,8 @@ import {
     createAsyncThunk
 } from '@reduxjs/toolkit'
 
+import { Redirect } from 'react-router'
+
 import * as ReadableAPI from '../../utils/ReadableAPI'
 
 export const fetchPosts = createAsyncThunk(
@@ -24,8 +26,14 @@ export const fetchPostsByCategory = createAsyncThunk(
 export const fetchPostById = createAsyncThunk(
     'post/fetchPostById',
     async(id) => {
-        const response = await ReadableAPI.getPostById(id)
+        try {
+            const response = await ReadableAPI.getPostById(id)
         return response
+        }
+        catch {
+            <Redirect to="/404" />
+        }
+        
     }
 )
 

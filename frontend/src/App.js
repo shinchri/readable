@@ -15,6 +15,7 @@ import { EditPostForm } from './features/posts/EditPostForm'
 import { DeletePostForm } from './features/posts/DeletePostForm'
 import { EditCommentForm } from './features/comments/EditCommentForm'
 import { DeleteCommentForm } from './features/comments/DeleteCommentForm'
+import { Page404 } from './features/page/Page404'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/posts/:id" component={PostDetail} />
           <Route exact path="/comments/:id/edit" component={EditCommentForm} />
           <Route exact path="/comments/:id/delete" component={DeleteCommentForm} />
+          <Route exact path="/404" component={Page404} />
           <Redirect to="/"/>
         </Switch>
       </div>

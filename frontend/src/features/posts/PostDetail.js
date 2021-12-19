@@ -9,8 +9,10 @@ import { Link } from 'react-router-dom'
 
 import { VoteButtons } from './VoteButtons'
 
+import { Redirect } from 'react-router'
+
 import {
-    fetchPostById
+    fetchPosts
 } from './postsSlice'
 
 let PostExcerpt = ({post}) => {
@@ -42,18 +44,17 @@ export const PostDetail = (props) => {
     const dispatch = useDispatch()
     
     useEffect(() => {
-        dispatch(fetchPostById(postId))
-    }, [dispatch, postId])
-
+        dispatch(fetchPosts())
+    }, [dispatch])
+   
     const post = useSelector(state => state.posts.find(post => post.id === postId))
-
+    
     if (post) {
         return (
             <PostExcerpt post={post}/>
         )
     }
-
-    // for some reason, the dispatch doesn't happen when the component is mounted
-    // thus check is 'post' exists
-    return null
+    else {
+        return <Redirect to="/404" />
+    }
 }
