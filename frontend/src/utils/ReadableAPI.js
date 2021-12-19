@@ -102,8 +102,6 @@ export const addNewComment = (newComment) =>
 // GET /comments/:id - get to get comment
 
 // POST /comments/:id - favourite
-
-// PUT /comments/:id - edit comment
 export const voteComment = (params) =>
     fetch(`${api}/comments/${params.id}`, {
         method: 'POST',
@@ -115,7 +113,20 @@ export const voteComment = (params) =>
     })
     .then(res => res.json())
     .then(data => data)
-    
+
+// PUT /comments/:id - edit comment
+export const editComment = (comment) =>
+    fetch(`${api}/comments/${comment.id}`, {
+        method: 'PUT',
+        headers: {
+            ...headers,
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(comment)
+    })
+    .then(res => res.json())
+    .then(data => data)
+
 // DELETE /comments/:id
 export const deleteComment = (comment) =>
     fetch(`${api}/comments/${comment.id}`, {

@@ -8,8 +8,6 @@ import { editPost } from './postsSlice'
 export const EditPostForm = ({match}) => {
     const { id } = match.params
 
-    console.log(id)
-
     const post = useSelector(state => state.posts.find(post => post.id === id))
 
     if (!post) {
@@ -28,7 +26,7 @@ export const EditPostForm = ({match}) => {
         setBody(e.target.value)
     }
 
-    const onEidtPostClicked = () => {
+    const onEditPostClicked = () => {
         if (title && body && editRequestStatus === 'idle') {
            
             const editedPost = {
@@ -78,7 +76,7 @@ export const EditPostForm = ({match}) => {
                             placeholder="Post content..."
                         ></textarea>
                     </div>
-                    <button type="button" className="button" onClick={onEidtPostClicked}>
+                    <button type="button" className="button" onClick={onEditPostClicked}>
                         Save Post
                     </button>
                 </form>
