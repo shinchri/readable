@@ -16,7 +16,6 @@ export const VoteButtons = ({comment}) => {
                 option: name
             }
         }
-
         try {
             dispatch(vote(params)).unwrap()
         } catch (err) {

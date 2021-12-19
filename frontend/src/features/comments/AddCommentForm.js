@@ -3,6 +3,7 @@ import { nanoid } from '@reduxjs/toolkit'
 
 import { useDispatch } from 'react-redux'
 import { addNewComment } from './commentsSlice'
+import { commentAdded } from '../posts/postsSlice'
 
 // What I need:
 // id, timestamp, body, author, parentId: id of post
@@ -32,6 +33,7 @@ export const AddCommentForm = ({ postId }) => {
             try {
                 setAddRequestStatus('pending')
                 await dispatch(addNewComment(newComment)).unwrap()
+                dispatch(commentAdded({id: postId}))
                 setBody('')
                 setAuthor('')
             } catch(err) {

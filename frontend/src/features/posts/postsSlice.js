@@ -65,7 +65,11 @@ const postsSlice = createSlice({
     name: 'posts',
     initialState: [],
     reducers: {
-
+        commentAdded(state, action) {
+            const { id } = action.payload
+            const post = state.find(post => post.id === id)
+            post.commentCount += 1
+        }
     },
     extraReducers(builder) {
         builder
@@ -94,5 +98,6 @@ const postsSlice = createSlice({
             })
     }
 })
+export const { commentAdded } = postsSlice.actions
 
 export default postsSlice.reducer

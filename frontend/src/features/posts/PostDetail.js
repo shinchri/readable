@@ -7,6 +7,8 @@ import { CommentsList } from '../comments/CommentsList'
 
 import { Link } from 'react-router-dom'
 
+import { VoteButtons } from './VoteButtons'
+
 import {
     fetchPostById
 } from './postsSlice'
@@ -23,13 +25,13 @@ let PostExcerpt = ({post}) => {
                         <span title="{post.timestamp}">&nbsp; <i>{formatDate(post.timestamp)}</i></span>
                     </div>
                     <p className="post-content">{post.body}</p>
-                    <p>Vote Score: {post.voteScore}</p>
+                    <VoteButtons post={post}/>
                     <div>
                         <Link to={`/posts/${post.id}/edit`}>edit</Link>&nbsp; | &nbsp;
                         <Link to={`/posts/${post.id}/delete`}>delete</Link>
                     </div>
                 </article>
-                <CommentsList postId={post.id}/>
+                <CommentsList post={post}/>
             </section>
             
         </div>

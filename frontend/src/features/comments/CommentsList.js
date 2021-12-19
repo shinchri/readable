@@ -8,20 +8,23 @@ import { Link } from 'react-router-dom'
 import {
     fetchCommentsByPost
 } from './commentsSlice'
+
 import { VoteButtons } from './VoteButtons'
 
-export const CommentsList = ({postId}) => {
-    
+export const CommentsList = ({post}) => {
+    const postId = post.id
+
     const dispatch = useDispatch()
     const comments = useSelector(state => state.comments)
 
     useEffect(() => {
         dispatch(fetchCommentsByPost(postId))
+        
     }, [dispatch, postId])
 
     return (
         <div className="posts-list">
-            <h3>Comments List</h3>
+            <h3>Comments List ({post.commentCount} {post.commentCount === 1 ? "comment" : "comments"})</h3>
             <AddCommentForm postId={postId} /> <br />
             {comments.map(comment => (
                 <section key={comment.id} className="post-excerpt">

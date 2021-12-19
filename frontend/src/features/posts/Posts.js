@@ -21,6 +21,7 @@ export const Posts = ({posts}) => {
                         <Link to={`/posts/${post.id}/edit`}>edit</Link>&nbsp; | &nbsp;
                         <Link to={`/posts/${post.id}/delete`}>delete</Link>
                     </div>
+                    <p>&#128172; &nbsp;<span>{post.commentCount}</span></p>
                     <Link to={`/posts/${post.id}`} className="button muted-button">
                         View Post
                     </Link>

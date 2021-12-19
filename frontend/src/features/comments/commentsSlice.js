@@ -3,7 +3,6 @@ import {
     createAsyncThunk
 } from '@reduxjs/toolkit'
 
-
 import * as ReadableAPI from '../../utils/ReadableAPI'
 
 export const fetchCommentsByPost = createAsyncThunk(
