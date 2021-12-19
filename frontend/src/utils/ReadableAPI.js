@@ -99,12 +99,23 @@ export const addNewComment = (newComment) =>
     .then(data => data)
 
 
-// GET /comments/:id
+// GET /comments/:id - get to get comment
 
-// POST /comments/:id
+// POST /comments/:id - favourite
 
-// PUT /comments/:id
-
+// PUT /comments/:id - edit comment
+export const voteComment = (params) =>
+    fetch(`${api}/comments/${params.id}`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(params.option)
+    })
+    .then(res => res.json())
+    .then(data => data)
+    
 // DELETE /comments/:id
 export const deleteComment = (comment) =>
     fetch(`${api}/comments/${comment.id}`, {

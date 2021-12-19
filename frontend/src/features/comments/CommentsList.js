@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import {
     fetchCommentsByPost
 } from './commentsSlice'
+import { VoteButtons } from './VoteButtons'
 
 export const CommentsList = ({postId}) => {
     
@@ -27,7 +28,7 @@ export const CommentsList = ({postId}) => {
                     <h4>By {comment.author}</h4>
                     <span title="{comment.timestamp}"><i>{formatDate(comment.timestamp)}</i></span>
                     <p>{comment.body}</p>
-
+                    <VoteButtons comment={comment} />
                     <div className="edit-delete">
                         <Link to={`/comments/${comment.id}/edit`}>edit</Link>&nbsp; | &nbsp;
                         <Link to={`/comments/${comment.id}/delete`}>delete</Link>

@@ -30,6 +30,14 @@ export const deleteComment = createAsyncThunk(
     }
 )
 
+export const vote = createAsyncThunk(
+    'comments/vote',
+    async(params) => {
+        const response = await ReadableAPI.voteComment(params)
+        return response
+    }
+)
+
 const commentsSlice = createSlice({
     name: 'comments',
     initialState: [],
@@ -47,6 +55,11 @@ const commentsSlice = createSlice({
             const { id } = action.payload
             const comments = state.filter(comment => comment.id !== id)
             return comments
+        })
+        .addCase(vote.fulfilled, (state, action) => {
+            const { id, voteScore } = action.payload
+            const comment = state.find(comment => comment.id === id)
+            comment.voteScore = voteScore
         })
     }
 })
