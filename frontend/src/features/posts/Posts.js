@@ -1,13 +1,37 @@
-import React from 'react'
+import React, { useState, useEffect }from 'react'
 import { Link } from 'react-router-dom'
 import { formatDate } from '../../utils/helper'
 
 import { VoteButtons } from './VoteButtons'
+
+import { useDispatch } from 'react-redux'
+
+import { sortBy } from './postsSlice'
+
 export const Posts = ({posts}) => {
+
+    const dispatch = useDispatch()
+
+    const [ sort, setSort ] = useState('time')
+
+    const onChangeSort = async e => {
+        setSort(e.target.value)
+    }
+
+    useEffect(() =>{
+        dispatch(sortBy({type: sort}))
+    }, [dispatch, sort])
 
     return (
         <section className="posts-list">
             <h2>All Posts</h2>
+            <div>
+                Sort By: 
+                <select id="sort" value={sort} onChange={onChangeSort}>
+                    <option value="time">Date</option>
+                    <option value="vote">Vote Score</option>
+                </select>
+            </div>
             {posts.map(post => (
                 <article className="post-excerpt" key={post.id}>
                     <h3>{post.title}</h3>

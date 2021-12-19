@@ -69,15 +69,31 @@ const postsSlice = createSlice({
             const { id } = action.payload
             const post = state.find(post => post.id === id)
             post.commentCount += 1
+        },
+        sortBy(state, action) {
+            let { type } = action.payload
+            let posts
+            if (type === 'time') {
+                posts = state.sort((a,b) => b.timestamp - a.timestamp)
+            }
+            else {
+                // type is vote
+                posts = state.sort((a,b) => b.voteScore - a.voteScore)
+            }
+            return posts
         }
     },
     extraReducers(builder) {
         builder
             .addCase(fetchPosts.fulfilled, (state, action) => {
-                return action.payload
+                let posts = [...action.payload]
+                posts = posts.sort((a,b) => b.timestamp - a.timestamp)
+                return posts
             })
             .addCase(fetchPostsByCategory.fulfilled, (state, action) => {
-                return action.payload
+                let posts = [...action.payload]
+                posts = posts.sort((a,b) => b.timestamp - a.timestamp)
+                return posts
             })
             .addCase(fetchPostById.fulfilled, (state, action) => {
                 return [action.payload]
@@ -98,6 +114,6 @@ const postsSlice = createSlice({
             })
     }
 })
-export const { commentAdded } = postsSlice.actions
+export const { commentAdded, sortBy } = postsSlice.actions
 
 export default postsSlice.reducer
