@@ -1,6 +1,6 @@
 import {
     createSlice,
-    createAsyncThunk,
+    createAsyncThunk
 } from '@reduxjs/toolkit'
 
 import * as ReadableAPI from '../../utils/ReadableAPI'
@@ -55,8 +55,8 @@ export const deletePost = createAsyncThunk(
 
 export const vote = createAsyncThunk(
     'posts/vote',
-    async (id, option) => {
-        const response = await ReadableAPI.vote(id, option)
+    async (params) => {
+        const response = await ReadableAPI.vote(params)
         return response
     }
 )
@@ -88,8 +88,9 @@ const postsSlice = createSlice({
                 return [action.payload]
             })
             .addCase(vote.fulfilled, (state, action) => {
-                console.log(state)
-                return [action.payload]
+                const { id, voteScore } = action.payload
+                const post = state.find(post => post.id === id)
+                post.voteScore = voteScore
             })
     }
 })

@@ -9,13 +9,15 @@ export const VoteButtons = ({post}) => {
     
     const onVoteClick = e => {
         const name = e.target.id
-    
-        const option = {
-            option: name
+
+        const params = {
+            id: post.id,
+            option: {
+                option: name
+            }
         }
-        
         try {
-            dispatch(vote(post.id, option)).unwrap()
+            dispatch(vote(params)).unwrap()
         } catch (err) {
             console.log('Error happened: ', err)
         }
