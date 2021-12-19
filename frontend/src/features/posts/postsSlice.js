@@ -55,8 +55,8 @@ export const deletePost = createAsyncThunk(
 
 export const vote = createAsyncThunk(
     'posts/vote',
-    async (post, option) => {
-        const response = await ReadableAPI.vote(post, option)
+    async (id, option) => {
+        const response = await ReadableAPI.vote(id, option)
         return response
     }
 )
@@ -88,7 +88,8 @@ const postsSlice = createSlice({
                 return [action.payload]
             })
             .addCase(vote.fulfilled, (state, action) => {
-                console.log(action)
+                console.log(state)
+                return [action.payload]
             })
     }
 })

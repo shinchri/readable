@@ -43,8 +43,8 @@ export const getPostById = (id) =>
     .then(data => data)
 
 // POST /posts/:id
-export const vote = (postId, option) => 
-    fetch(`${api}/posts/${postId}`, {
+export const vote = (id, option) => 
+    fetch(`${api}/posts/${id}`, {
         method: 'POST',
         headers,
         body: JSON.stringify(option)
