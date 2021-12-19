@@ -22,6 +22,14 @@ export const addNewComment = createAsyncThunk(
     }
 )
 
+export const deleteComment = createAsyncThunk(
+    'comments/deleteComment',
+    async(comment) => {
+        const response = await ReadableAPI.deleteComment(comment)
+        return response
+    }
+)
+
 const commentsSlice = createSlice({
     name: 'comments',
     initialState: [],
@@ -34,6 +42,11 @@ const commentsSlice = createSlice({
         })
         .addCase(addNewComment.fulfilled, (state ,action) => {
             state.push(action.payload)
+        })
+        .addCase(deleteComment.fulfilled, (state, action) => {
+            const { id } = action.payload
+            const comments = state.filter(comment => comment.id !== id)
+            return comments
         })
     }
 })

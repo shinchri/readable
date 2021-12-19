@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { formatDate } from '../../utils/helper'
 import { AddCommentForm } from './AddCommentForm'
 
+import { Link } from 'react-router-dom'
+
 import {
     fetchCommentsByPost
 } from './commentsSlice'
@@ -25,6 +27,11 @@ export const CommentsList = ({postId}) => {
                     <h4>By {comment.author}</h4>
                     <span title="{comment.timestamp}"><i>{formatDate(comment.timestamp)}</i></span>
                     <p>{comment.body}</p>
+
+                    <div className="edit-delete">
+                        <Link to={`/comments/${comment.id}/edit`}>edit</Link>&nbsp; | &nbsp;
+                        <Link to={`/comments/${comment.id}/delete`}>delete</Link>
+                    </div>
                 </section>
             ))}
         </div>

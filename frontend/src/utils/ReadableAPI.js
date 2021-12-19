@@ -106,3 +106,10 @@ export const addNewComment = (newComment) =>
 // PUT /comments/:id
 
 // DELETE /comments/:id
+export const deleteComment = (comment) =>
+    fetch(`${api}/comments/${comment.id}`, {
+        method: 'DELETE',
+        headers
+    })
+    .then(res => res.json())
+    .then(data => data)

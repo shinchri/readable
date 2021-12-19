@@ -13,6 +13,8 @@ import { PostDetail } from './features/posts/PostDetail'
 import { AddPostForm } from './features/posts/AddPostForm'
 import { EditPostForm } from './features/posts/EditPostForm'
 import { DeletePostForm } from './features/posts/DeletePostForm'
+import { EditCommentForm } from './features/comments/EditCommentForm'
+import { DeleteCommentForm } from './features/comments/DeleteCommentForm'
 
 function App() {
 
@@ -25,7 +27,9 @@ function App() {
           <Route exact path="/posts/new" component={AddPostForm} />
           <Route exact path="/posts/:id/edit" component={EditPostForm} />
           <Route exact path="/posts/:id/delete" component={DeletePostForm} />
-          <Route exact path="/posts/:id" component={PostDetail} />   
+          <Route exact path="/posts/:id" component={PostDetail} />
+          <Route exact path="/comments/:id/edit" component={EditCommentForm} />
+          <Route exact path="/comments/:id/delete" component={DeleteCommentForm} />
           <Redirect to="/"/>
         </Switch>
       </div>
