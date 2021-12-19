@@ -12,6 +12,7 @@ import { PostsByCategory } from './features/posts/PostsByCategory'
 import { PostDetail } from './features/posts/PostDetail'
 import { AddPostForm } from './features/posts/AddPostForm'
 import { EditPostForm } from './features/posts/EditPostForm'
+import { DeletePostForm } from './features/posts/DeletePostForm'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/category/:category" component={PostsByCategory} />
           <Route exact path="/posts/new" component={AddPostForm} />
           <Route exact path="/posts/:id/edit" component={EditPostForm} />
+          <Route exact path="/posts/:id/delete" component={DeletePostForm} />
           <Route exact path="/posts/:id" component={PostDetail} />   
           <Redirect to="/"/>
         </Switch>

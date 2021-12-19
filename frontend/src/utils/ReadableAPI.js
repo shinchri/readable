@@ -58,6 +58,13 @@ export const editPost = (post) =>
     .then(data => data)
 
 // DELETE /posts/:id
+export const deletePost = (post) =>
+    fetch(`${api}/posts/${post.id}`, {
+        method: "DELETE",
+        headers
+    })
+    .then(res => res.json())
+    .then(data => data)
 
 // GET /posts/:id/comments
 export const getCommentsByPostId = (id) => 

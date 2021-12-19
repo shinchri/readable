@@ -17,7 +17,7 @@ export const Posts = ({posts}) => {
                     <p>Vote Score: {post.voteScore}</p>
                     <div>
                         <Link to={`/posts/${post.id}/edit`}>edit</Link>&nbsp; | &nbsp;
-                        {/* <Link>delete</Link> */}
+                        <Link to={`/posts/${post.id}/delete`}>delete</Link>
                     </div>
                     <Link to={`/posts/${post.id}`} className="button muted-button">
                         View Post

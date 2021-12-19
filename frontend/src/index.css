@@ -251,6 +251,14 @@ button.reaction-button {
   width: 300px;
 }
 
+.delete-button {
+  margin-right: 15px;
+}
+
+section.delete-post {
+  text-align: center;
+}
+
 @-webkit-keyframes load3 {
   0% {
     -webkit-transform: rotate(0deg);

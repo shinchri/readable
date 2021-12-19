@@ -5,6 +5,8 @@ import { formatDate } from '../../utils/helper'
 import { CategoryList } from '../categories/CategoryList'
 import { CommentsList } from '../comments/CommentsList'
 
+import { Link } from 'react-router-dom'
+
 import {
     fetchPostById
 } from './postsSlice'
@@ -15,13 +17,17 @@ let PostExcerpt = ({post}) => {
             <CategoryList />
             <section>   
                 <article className="post">
-                <h3>{post.title}</h3>
-                <div>
-                    <span>By {post ? post.author : "Unknown Author"}</span>
-                    <span title="{post.timestamp}">&nbsp; <i>{formatDate(post.timestamp)}</i></span>
-                </div>
-                <p className="post-content">{post.body}</p>
-                <p>Vote Score: {post.voteScore}</p>
+                    <h3>{post.title}</h3>
+                    <div>
+                        <span>By {post ? post.author : "Unknown Author"}</span>
+                        <span title="{post.timestamp}">&nbsp; <i>{formatDate(post.timestamp)}</i></span>
+                    </div>
+                    <p className="post-content">{post.body}</p>
+                    <p>Vote Score: {post.voteScore}</p>
+                    <div>
+                        <Link to={`/posts/${post.id}/edit`}>edit</Link>&nbsp; | &nbsp;
+                        <Link to={`/posts/${post.id}/delete`}>delete</Link>
+                    </div>
                 </article>
                 <CommentsList postId={post.id}/>
             </section>

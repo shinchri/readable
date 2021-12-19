@@ -45,6 +45,14 @@ export const editPost = createAsyncThunk(
     }
 )
 
+export const deletePost = createAsyncThunk(
+    'posts/deletePost',
+    async (post) => {
+        const response = await ReadableAPI.deletePost(post)
+        return response
+    }
+)
+
 const postsSlice = createSlice({
     name: 'posts',
     initialState: [],
@@ -66,7 +74,9 @@ const postsSlice = createSlice({
                 return [action.payload]
             })
             .addCase(editPost.fulfilled, (state, action) => {
-                console.log("here: ", action.payload)
+                return [action.payload]
+            })
+            .addCase(deletePost.fulfilled, (state, action) =>{
                 return [action.payload]
             })
     }
