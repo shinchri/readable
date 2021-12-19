@@ -71,35 +71,46 @@ export const AddPostForm = () => {
             <section>
                 <h2>Add a New Post</h2>
                 <form>
-                    <label htmlFor="postTitle">Post Title:</label>
-                    <input 
-                        type='text'
-                        id="postTitle"
-                        name="postTitle"
-                        value={title}
-                        onChange={onTitleChange}
-                    />
-                    <label htmlFor="postAuthor">Post Author:</label>
-                    <select id="postAuthor" value={author} onChange={onAuthorChange}>
-                        <option value=""></option>
-                        <option value="authorOne">authorOne</option>
-                        <option value="authorTwo">authorTwo</option>
-                        <option value="authorThree">authorThree</option>
-                    </select>
-                    <label htmlFor="postCategory">Post Category:</label>
-                    <select id="postCategory" value={category} onChange={onCategoryChange}>
-                        <option value=""></option>
-                        {categoriesOptions}
-                    </select>
-                    <label htmlFor="postBody">Post Content:</label>
-                    <input 
-                        type='text'
-                        id="postBody"
-                        name="postBody"
-                        value={body}
-                        onChange={onBodyChange}
-                    />
-                    <button type='button' onClick={onSavePostClicked} disabled={!canSave}>
+                    <div>
+                        <label htmlFor="postTitle" className="form-label">Post Title:</label>
+                        <input 
+                            type='text'
+                            id="postTitle"
+                            name="postTitle"
+                            value={title}
+                            onChange={onTitleChange}
+                            className="form-input"
+                            placeholder="Title goes here"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="postAuthor" className="form-label">Post Author:</label>
+                        <select id="postAuthor" value={author} onChange={onAuthorChange} className="form-input">
+                            <option value=""></option>
+                            <option value="authorOne">authorOne</option>
+                            <option value="authorTwo">authorTwo</option>
+                            <option value="authorThree">authorThree</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor="postCategory" className="form-label">Post Category:</label>
+                        <select id="postCategory" value={category} onChange={onCategoryChange} className="form-input">
+                            <option value=""></option>
+                            {categoriesOptions}
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor="postBody" className="form-label">Post Content:</label>
+                        <textarea
+                            id="postBody"
+                            name="postBody"
+                            value={body}
+                            onChange={onBodyChange}
+                            className="form-input form-text-area"
+                            placeholder="Post content..."
+                        ></textarea>
+                    </div>
+                    <button className="button" type='button' onClick={onSavePostClicked} disabled={!canSave}>
                         Save Post
                     </button>
                 </form>
