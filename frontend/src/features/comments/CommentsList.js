@@ -15,8 +15,9 @@ export const CommentsList = ({post}) => {
     const postId = post.id
 
     const dispatch = useDispatch()
-    const comments = useSelector(state => state.comments)
 
+    let comments = useSelector(state => state.comments)
+   
     useEffect(() => {
         dispatch(fetchCommentsByPost(postId))
         

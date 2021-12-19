@@ -53,7 +53,9 @@ const commentsSlice = createSlice({
     },
     extraReducers(builder) {
         builder.addCase(fetchCommentsByPost.fulfilled, (state, action) => {
-            return [...action.payload]
+            let comments = [...action.payload]
+            comments = comments.sort((a,b) => b.timestamp - a.timestamp)
+            return comments
         })
         .addCase(addNewComment.fulfilled, (state ,action) => {
             state.push(action.payload)
